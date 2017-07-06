@@ -188,7 +188,11 @@ namespace CameraCapture
 
             //Brightness
             richTextBox1.AppendText("Brightness: " + _capture.GetCaptureProperty(Emgu.CV.CvEnum.CapProp.Brightness).ToString() + "\n"); //get the value and add it to richtextbox
-            Brigtness_SLD.Value = (int)_capture.GetCaptureProperty(Emgu.CV.CvEnum.CapProp.Brightness);  //Set the slider value
+            var br = (int)_capture.GetCaptureProperty(Emgu.CV.CvEnum.CapProp.Brightness);  //Set the slider value
+            //check to current brightness is less or equal to maximum of trackbar
+            if (Brigtness_SLD.Maximum < br)
+                Brigtness_SLD.Maximum = br;
+            Brigtness_SLD.Value = br;
             Brigthness_LBL.Text = Brigtness_SLD.Value.ToString(); //set the slider text
 
             //Contrast
